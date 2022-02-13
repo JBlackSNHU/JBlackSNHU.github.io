@@ -1,19 +1,13 @@
-## Welcome to GitHub Pages
+## Self-narrated Code Review
+This is the initial code-review that I performed of the Inventory Management project that I created for the Mobile Architecture and Programming course at SNHU. This review critiques the formatting, logic, and general security of the program as well as outlines my planned enhancements for the application for the capstone project.
 
-You can use the [editor on GitHub](https://github.com/jblacksnhu/jblacksnhu.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## Software Design and Engineering
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## Algorithms and Data Structure
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-'''markdown
-Syntax highlighted code block
+## Databases
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+## Professional Self Assessment
