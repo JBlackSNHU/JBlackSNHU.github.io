@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Rifts Companion</string>
+    <string name="attributes_roll_attributes">Roll Attributes</string>
+
+    <string name="intelligence_quotient_full">Intelligence Quotient (I.Q.)</string>
+    <string name="intelligence_quotient_name">Intelligence Quotient</string>
+    <string name="intelligence_quotient_abbr">I.Q.</string>
+
+    <string name="mental_endurance_full">Mental Endurance (M.E.)</string>
+    <string name="mental_endurance_name">Mental Endurance</string>
+    <string name="mental_endurance_abbr">M.E.</string>
+
+    <string name="mental_affinity_full">Mental Affinity (M.A.)</string>
+    <string name="mental_affinity_name">Mental Affinity</string>
+    <string name="mental_affinity_abbr">M.A.</string>
+
+    <string name="physical_strength_full">Physical Strength (P.S.)</string>
+    <string name="physical_strength_name">Physical Strength</string>
+    <string name="physical_strength_abbr">P.S.</string>
+
+    <string name="physical_prowess_full">Physical Prowess (P.P.)</string>
+    <string name="physical_prowess_name">Physical Prowess</string>
+    <string name="physical_prowess_abbr">P.P.</string>
+
+    <string name="physical_endurance_full">Physical Endurance (P.E.)</string>
+    <string name="physical_endurance_name">Physical Endurance</string>
+    <string name="physical_endurance_abbr">P.E.</string>
+
+    <string name="physical_beauty_full">Physical Beauty (P.B.)</string>
+    <string name="physical_beauty_name">Physical Beauty</string>
+    <string name="physical_beauty_abbr">P.B.</string>
+
+    <string name="speed_full">Speed (Spd)</string>
+    <string name="speed_name">Speed</string>
+    <string name="speed_abbr">Spd</string>
+
+    <string name="attributes_default_attribute_value">12</string>
+    <string name="description_nav_backward">Navigate Back</string>
+    <string name="description_nav_next">Navigate Next</string>
+
+    <string name="create_character">Create New Character</string>
+
+    <string name="title_hpsdc_activity">Step 2: HP &amp; SDC</string>
+    <string name="attributes_grid_title">Character Attributes</string>
+
+    <string name="sub_header_occ_skills">O.C.C. Skills</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_character_name">Character Name</string>
+    <string name="tv_pc_attribs_prev_main_menu">Main Menu</string>
+    <string name="tv_pc_attribs_next_class_selection">Class Selection</string>
+
+</resources>

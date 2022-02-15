@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="character" type="com.example.riftscompanion.PlayerCharacter" />
+        <variable name="callback" type="com.example.riftscompanion.PlayerCharacterAttributesActivity"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PlayerCharacterAttributesActivity">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:text="Step 1: The Eight Attributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cbEnableCustomAttributes"/>
+
+        <CheckBox
+            android:id="@+id/cbEnableCustomAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="Enable Custom Attributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:layout_constraintBottom_toTopOf="@+id/tblAttributesLayout"/>
+
+        <TableLayout
+            android:id="@+id/tblAttributesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginHorizontal="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbEnableCustomAttributes"
+            app:layout_constraintBottom_toTopOf="@+id/btnRollAttributes">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txtViewIQ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/intelligence_quotient_full" />
+
+                <EditText
+                    android:id="@+id/edtIntelligenceQuotient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/intelligence_quotient_name"
+                    android:inputType="number"
+                    android:autofillHints="@string/attributes_default_attribute_value"
+                    android:text="@={character.pcIntelligenceQuotient}" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mental_endurance_full" />
+
+                <EditText
+                    android:id="@+id/edtMentalEndurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/mental_endurance_name"
+                    android:inputType="number"
+                    android:text="@={character.pcMentalEndurance}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mental_affinity_full" />
+
+                <EditText
+                    android:id="@+id/edtMentalAffinity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/mental_affinity_name"
+                    android:inputType="number"
+                    android:text="@={character.pcMentalAffinity}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_strength_full" />
+
+                <EditText
+                    android:id="@+id/edtPhysicalStrength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/physical_strength_name"
+                    android:inputType="number"
+                    android:text="@={character.pcPhysicalStrength}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_prowess_full" />
+
+                <EditText
+                    android:id="@+id/edtPhysicalProwess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/physical_prowess_name"
+                    android:inputType="number"
+                    android:text="@={character.pcPhysicalProwess}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_endurance_full" />
+
+                <EditText
+                    android:id="@+id/edtPhysicalEndurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/physical_endurance_name"
+                    android:inputType="number"
+                    android:text="@={character.pcPhysicalEndurance}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_beauty_full" />
+
+                <EditText
+                    android:id="@+id/edtPhysicalBeauty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:hint="@string/physical_beauty_name"
+                    android:inputType="number"
+                    android:text="@={character.pcPhysicalBeauty}"
+                    android:importantForAutofill="no"/>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speed_full" />
+
+                <EditText
+                    android:id="@+id/edtSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="@string/speed_name"
+                    android:text="@={character.pcSpeed}"/>
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/btnRollAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/attributes_roll_attributes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tblAttributesLayout"
+            app:layout_constraintBottom_toTopOf="@id/btnPCAttributeNavBack"
+            android:onClick="@{() -> callback.GenerateAttributeRolls()}"
+            />
+
+        <ImageButton
+            android:id="@+id/btnPCAttributeNavBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/transparent"
+            android:contentDescription="@string/description_nav_backward"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPCAttributeNavForward"
+            app:layout_constraintTop_toBottomOf="@+id/btnRollAttributes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/back_arrow"
+            android:onClick="NavToPrevious"/>
+
+        <ImageButton
+            android:id="@+id/btnPCAttributeNavForward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnPCAttributeNavBack"
+            app:layout_constraintTop_toBottomOf="@+id/btnRollAttributes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/forward_arrow"
+            android:onClick="@{() -> callback.NavToClassSelectionActivity()}"
+            android:contentDescription="@string/description_nav_next"/>
+
+        <TextView
+            android:id="@+id/tvMainMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_pc_attribs_prev_main_menu"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="@id/btnPCAttributeNavBack"
+            app:layout_constraintEnd_toEndOf="@+id/btnPCAttributeNavBack"
+            app:layout_constraintTop_toBottomOf="@+id/btnPCAttributeNavBack"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvCLassSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_pc_attribs_next_class_selection"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="@id/btnPCAttributeNavForward"
+            app:layout_constraintEnd_toEndOf="@+id/btnPCAttributeNavForward"
+            app:layout_constraintTop_toBottomOf="@+id/btnPCAttributeNavForward"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

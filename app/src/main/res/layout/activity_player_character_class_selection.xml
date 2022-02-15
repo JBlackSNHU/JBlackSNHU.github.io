@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="character" type="com.example.riftscompanion.PlayerCharacter" />
+        <variable name="selectedClass" type="com.example.riftscompanion.CharacterClass" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PlayerCharacterClassSelectionActivity"
+        android:layout_marginVertical="30dp"
+        >
+
+        <TableLayout
+            android:id="@+id/tblClassSelectionAttributes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp"
+            android:stretchColumns="*"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvSelectedClass"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/txtClassSelectionAttributesGridTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attributes_grid_title"
+                    android:textAlignment="center"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCIQ"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcIntelligenceQuotient}"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCME"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcMentalEndurance}"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCIQMA"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcMentalAffinity}"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCIQPS"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcPhysicalStrength}"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="match_parent"
+                android:paddingBottom="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionIQLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/intelligence_quotient_abbr"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionMELabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/mental_endurance_abbr"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionMALabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/mental_affinity_abbr"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionPSLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/physical_strength_abbr"
+                    android:textAlignment="center"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCPP"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcPhysicalProwess}"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCPE"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcPhysicalEndurance}"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCPB"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcPhysicalBeauty}"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtClassSelectionPCSPD"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{character.pcSpeed}"
+                    android:textAlignment="center"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionPPLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_prowess_abbr"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionPELabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_endurance_abbr"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionPBLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/physical_beauty_abbr"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+
+                <TextView
+                    android:id="@+id/txtViewClassSelectionSPDLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speed_abbr"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    />
+            </TableRow>
+        </TableLayout>
+
+
+        <TextView
+            android:id="@+id/tvSelectedClassIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Class --> "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvSelectedClass"
+            app:layout_constraintTop_toTopOf="@id/tvSelectedClass"
+            app:layout_constraintBottom_toBottomOf="@id/tvSelectedClass"/>
+
+        <TextView
+            android:id="@+id/tvSelectedClass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            app:layout_constraintStart_toEndOf="@id/tvSelectedClassIndicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tblClassSelectionAttributes"
+            app:layout_constraintBottom_toTopOf="@+id/flExpandableListViewFrame"
+            android:text="@{character.pcClass}"/>
+
+
+
+        <FrameLayout
+            android:id="@+id/flExpandableListViewFrame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectedClass"
+            app:layout_constraintBottom_toTopOf="@id/btnPCClassSelectionNavBack"
+            >
+            <ExpandableListView
+                android:id="@+id/elvAvailableClasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
+                >
+
+            </ExpandableListView>
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/btnPCClassSelectionNavBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/transparent"
+            app:srcCompat="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPCClassSelectionNavForward"
+            app:layout_constraintTop_toBottomOf="@+id/flExpandableListViewFrame"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/description_nav_backward"/>
+
+        <ImageButton
+            android:id="@+id/btnPCClassSelectionNavForward"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/transparent"
+            app:srcCompat="@drawable/forward_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnPCClassSelectionNavBack"
+            app:layout_constraintTop_toTopOf="@id/btnPCClassSelectionNavBack"
+            app:layout_constraintBottom_toBottomOf="@id/btnPCClassSelectionNavBack"
+            android:contentDescription="@string/description_nav_next"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
