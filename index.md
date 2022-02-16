@@ -111,7 +111,8 @@ private ArrayList<CharacterClass> determineAvailableClasses() {
 }
 ```
 
-For the transition from the inventory manager application to the Rifts Companion application, I implemented multiple new class structures to support different data components that are involved in character creation for the Rifts RPG game. These classes all implement getter/setter functionality for access control
+While I do feel that I can continue to grow in the area of Algorithms and Data Structures, I feel I have a solid understanding of both of the topics and can easily work with other team members to design sound and secure code in this area.
+
 
 ## Databases
 The adjustment to the inventory manager application for database structure was relatively straightforward. The number of tables were increased to support the different amounts of data that needed to be accessed by the program at different points in the character creation process. The tables contain significantly larger amounts of data compared to the inventory management program and I ended up creating a Java package with classes and methods dedicated to populating those tables provided they are not updated. 
