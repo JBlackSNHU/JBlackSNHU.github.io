@@ -31,7 +31,7 @@ An example of two classes that are used in the application are the [Skill class]
 ### Algorithms
 The logical flow of the character creation process requires multiple algorithms to determine character attributes, available selection of items and skills, and will later incorporate a search function. Provided below are two examples of the algorithms used in the application.
 
-The first example is a simple random number generator for the character attributes. This algorithm is found in the [PlayerCharacterAttributesActivity](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacterAttributesActivity.java) .In the course of creating a character, eight attributes are assigned values by rolling four six sided dice and discarding the lowest value. This algorithm simulates the dice roll by obtaining four random numbers between 1 and 6 and then takes the sum of the three highest numbers. There is an additional clause the allows for one additional dice roll if the total of the three highest rolls is 17 or 18. The algorithm performs this simulated dice roll 8 times and then sets the each of the eight character attributes those values. 
+The first example is a simple random number generator for the character attributes. This algorithm is found in the [PlayerCharacterAttributesActivity](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacterAttributesActivity.java). In the course of creating a character, eight attributes are assigned values by rolling four six-sided dice and discarding the lowest value. This algorithm simulates the dice roll by obtaining four random numbers between 1 and 6 and then takes the sum of the three highest numbers. There is an additional clause the allows for one additional dice roll if the total of the three highest rolls is 17 or 18. The algorithm performs this simulated dice roll 8 times and then sets the each of the eight character attributes those values. 
 
 ```java
 public void GenerateAttributeRolls() {
@@ -111,7 +111,7 @@ private ArrayList<CharacterClass> determineAvailableClasses() {
 }
 ```
 
-While I do feel that I can continue to grow in the area of Algorithms and Data Structures, I feel I have a solid understanding of both of the topics and can easily work with other team members to design sound and secure code in this area.
+While I do feel that I can continue to grow in the area of Algorithms and Data Structures, I also believe that I have a solid understanding of both of the topics and can easily work with other team members to design sound and secure code in this area.
 
 
 ## Databases
@@ -180,7 +180,9 @@ public void PopulateSkillsTable() {
 }
 ```
 
-Lastly, data is accessed from the database using one of two different queries from the application. The first query returns all values contained in the specific table as in the below example for the Skills Table
+Lastly, data is accessed from the database using one of two different queries from the application. 
+The first query returns all values contained in the specific table as in the below example for the Skills Table
+
 ```java
     public ArrayList<Skill> getDBSkillsList() {
     SQLiteDatabase db = this.getWritableDatabase();
@@ -212,7 +214,7 @@ Lastly, data is accessed from the database using one of two different queries fr
 }
 ```
 
-And the second query method is to return one or more entries contained in a comma delimmitted string passed as an argument to the method. This uses the SQL query "IN" method to dynamically select any matching entries for the skill name, but also able to return a single value. 
+The second query method will return one or more entries contained in a comma delimitted string passed as an argument to the method. This uses the SQL query "IN" method to dynamically select any matching entries for the skill name, but also able to return a single value. 
 
 ```java
     public ArrayList<Skill> getPartialDBSkillsList(String skillNames) {
