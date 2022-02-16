@@ -23,11 +23,13 @@ I have also included a partially completed set of UML diagrams as documentation 
 
 ## Algorithms and Data Structure
 
+# Data Structures
 In the area of Algorithms and Data Structures, I feel that I have a strong general understanding but that I am not an expert. I am more than capable of creating meaningful data structures as in the case of the classes that were used in the application. I am also able to create basic algorithms to accomplish the general functionality that may be required in the applicaton. 
 
 An example of two classes that are used in the application are the [Skill class](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/Skill.java) and the [Player Character class](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacter.java). The Skill class is designed to be held in array of skills for the Player Character to access during creation and character management. The Skill class utilizes private variables that are accessed through the "get" methods and incorporates a constructor method when the class is initalized. The Player Character class is similar but also utilizes "set" methods that allow for the ViewModel and databinding functionality to set values for the Player Characer object that is in use. 
 
-The logical flow of the character creatoin process reuqires multiple algorithms to determine character attributes, available selection of items and skills, and will later incorporate a search function. Provided below are two examples of the algorithms used in the application.
+# Algorithms
+The logical flow of the character creatoin process requires multiple algorithms to determine character attributes, available selection of items and skills, and will later incorporate a search function. Provided below are two examples of the algorithms used in the application.
 
 The first example is a simple random number generator for the character attributes. This algorithm is found in the [PlayerCharacterAttributesActivity](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacterAttributesActivity.java) .In the course of creating a character, eight attributes are assigned values by rolling four six sided dice and discarding the lowest value. This algorithm simulates the dice roll by obtaining four random numbers between 1 and 6 and then takes the sum of the three highest numbers. There is an additional clause the allows for one additional dice roll if the total of the three highest rolls is 17 or 18. The algorithm performs this simulated dice roll 8 times and then sets the each of the eight character attributes those values. 
 
