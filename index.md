@@ -22,6 +22,93 @@ I have also included a partially completed set of UML diagrams as documentation 
 
 
 ## Algorithms and Data Structure
+
+In the area of Algorithms and Data Structures, I feel that I have a strong general understanding but that I am not an expert. I am more than capable of creating meaningful data structures as in the case of the classes that were used in the application. I am also able to create basic algorithms to accomplish the general functionality that may be required in the applicaton. 
+
+An example of two classes that are used in the application are the [Skill class](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/Skill.java) and the [Player Character class](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacter.java). The Skill class is designed to be held in array of skills for the Player Character to access during creation and character management. The Skill class utilizes private variables that are accessed through the "get" methods and incorporates a constructor method when the class is initalized. The Player Character class is similar but also utilizes "set" methods that allow for the ViewModel and databinding functionality to set values for the Player Characer object that is in use. 
+
+The logical flow of the character creatoin process reuqires multiple algorithms to determine character attributes, available selection of items and skills, and will later incorporate a search function. Provided below are two examples of the algorithms used in the application.
+
+The first example is a simple random number generator for the character attributes. This algorithm is found in the [PlayerCharacterAttributesActivity](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacterAttributesActivity.java) .In the course of creating a character, eight attributes are assigned values by rolling four six sided dice and discarding the lowest value. This algorithm simulates the dice roll by obtaining four random numbers between 1 and 6 and then takes the sum of the three highest numbers. There is an additional clause the allows for one additional dice roll if the total of the three highest rolls is 17 or 18. The algorithm performs this simulated dice roll 8 times and then sets the each of the eight character attributes those values. 
+
+```java
+public void GenerateAttributeRolls() {
+    int[] randomRolls = new int[8];
+    int min = 1;
+    int max = 6;
+    for (int i = 0; i < randomRolls.length; i++) {
+        int[] rolls = new int[4];
+
+        // Loop assigning random values to the rolls array
+        for (int r = 0; r < rolls.length; r++) {
+            rolls[r] = (int)(Math.random()*(max-min+1)+min);
+        }
+        // Using the Arrays.sort function to set the lowest value to index 0
+        Arrays.sort(rolls);
+
+        // Sum the three highest values from the rolls array
+        // which are now indices 1-3 thanks to the Arrays.sort method.
+        int totalRoll = rolls[1] + rolls[2] + rolls[3];
+        // If the total is less than 17 then this value is assigned
+        if (totalRoll < 17) {
+            randomRolls[i] = totalRoll;
+        }
+        // If the total is 17, or 18 (gte 17) then we add an additional roll since the attribute is exceptional
+        else {
+            randomRolls[i] = totalRoll + (int)(Math.random()*(max-min+1)+min);
+        }
+    }
+
+    /* JBLACK Manually set the value of the rolls to the corresponding rolls generated above */
+    this.character.setPcIntelligenceQuotient(String.valueOf(randomRolls[0]));
+    this.character.setPcMentalEndurance(String.valueOf(randomRolls[1]));
+    this.character.setPcMentalAffinity(String.valueOf(randomRolls[2]));
+    this.character.setPcPhysicalStrength(String.valueOf(randomRolls[3]));
+    this.character.setPcPhysicalProwess(String.valueOf(randomRolls[4]));
+    this.character.setPcPhysicalEndurance(String.valueOf(randomRolls[5]));
+    this.character.setPcPhysicalBeauty(String.valueOf(randomRolls[6]));
+    this.character.setPcSpeed(String.valueOf(randomRolls[7]));
+}
+```
+
+The second example occurs during character class selection (different from the java Class type). The algorithm can be found in the ViewModel [PlayerCharacterClassSelectionActivity](https://github.com/JBlackSNHU/JBlackSNHU.github.io/blob/master/app/src/main/java/com/example/riftscompanion/PlayerCharacterClassSelectionActivity.java). In this example, there are minimum attribute requirements set forth by some of the classes that players may choose from. This algorithm takes the list of classes and compares the characters attributes to those requirements and provides back a list of available classes where the requirements have been met. The logic here is that the is the requirement is not met for any of the eight attributes, the application moves directly to the next class for consideration. If all requiremnts are met, then the character class is added to the list of available classes.
+
+```java
+private ArrayList<CharacterClass> determineAvailableClasses() {
+    ArrayList<CharacterClass> characterClasses = dbHelper.getDBCharacterClassList();
+    ArrayList<CharacterClass> availableClasses = new ArrayList<>();
+    int pcIQ, pcME, pcMA, pcPS, pcPP, pcPE, pcPB;
+    pcIQ = Integer.parseInt(character.getPcIntelligenceQuotient());
+    pcME = Integer.parseInt(character.getPcMentalEndurance());
+    pcMA = Integer.parseInt(character.getPcMentalAffinity());
+    pcPS = Integer.parseInt(character.getPcPhysicalStrength());
+    pcPP = Integer.parseInt(character.getPcPhysicalProwess());
+    pcPE = Integer.parseInt(character.getPcPhysicalEndurance());
+    pcPB = Integer.parseInt(character.getPcPhysicalBeauty());
+
+    for (CharacterClass pcClass : characterClasses) {
+        if (pcClass.getClassRequiredIQ() > pcIQ)
+            break;
+        else if (pcClass.getClassRequiredME() > pcME)
+            break;
+        else if (pcClass.getClassRequiredMA() > pcMA)
+            break;
+        else if (pcClass.getClassRequiredPS() > pcPS)
+            break;
+        else if (pcClass.getClassRequiredPP() > pcPP)
+            break;
+        else if (pcClass.getClassRequiredPE() > pcPE)
+            break;
+        else if (pcClass.getClassRequiredPB() > pcPB)
+            break;
+        else
+            availableClasses.add(pcClass);
+    }
+
+    return characterClasses;
+}
+```
+
 For the transition from the inventory manager application to the Rifts Companion application, I implemented multiple new class structures to support different data components that are involved in character creation for the Rifts RPG game. These classes all implement getter/setter functionality for access control
 
 ## Databases
@@ -50,111 +137,111 @@ The program then performs a check on each table to determine if it is empty or c
 
 ```java
 private boolean isTableEmpty(String tableName) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        boolean retval;
-        Cursor cursor = db.rawQuery(String.format("SELECT COUNT(*) FROM %s",tableName), null);
-        cursor.moveToFirst();
-        if (cursor.getInt(0) == 0)
-            retval = true;
-        else
-            retval = false;
+    SQLiteDatabase db = this.getReadableDatabase();
+    boolean retval;
+    Cursor cursor = db.rawQuery(String.format("SELECT COUNT(*) FROM %s",tableName), null);
+    cursor.moveToFirst();
+    if (cursor.getInt(0) == 0)
+        retval = true;
+    else
+        retval = false;
 
-        cursor.close();
-        return retval;
-    }
+    cursor.close();
+    return retval;
+}
 ```
 
 If the tables are empty, then the data is added to the table using the SQLiteOpenHelper functions using ContentValues and the SQLiteDatabase insert() function. Below is an example of the Skills table being populated using looping through the Skills List.
 
 ```java
 public void PopulateSkillsTable() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        SkillsData sd = new SkillsData();
+    SQLiteDatabase db = this.getWritableDatabase();
+    SkillsData sd = new SkillsData();
 
-        for (Skill skill : sd.getSkillsList()) {
-            ContentValues values = new ContentValues();
+    for (Skill skill : sd.getSkillsList()) {
+        ContentValues values = new ContentValues();
 
-            values.put(SKILL_NAME_COL, skill.getSkillName());
-            values.put(SKILL_DESCRIPTION_COL, skill.getSkillDescription());
-            values.put(SKILL_CATEGORY_COL, skill.getSkillCategory());
-            values.put(SKILL_PROFICIENCY_COL, skill.getSkillProficiency());
-            values.put(SKILL_PROFICIENCY_PER_LEVEL_COL, skill.getSkillProficiencyPerLevel());
-            values.put(SKILL_SECONDARY_PROFICIENCY_COL, skill.getSkillSecondaryProficiency());
-            values.put(SKILL_SECONDARY_PROFICIENCY_PER_LEVEL_COL, skill.getSkillSecondaryProficiencyPerLevel());
-            values.put(SKILL_PREREQUISITES_COL, skill.getSkillPrerequisites());
-            values.put(SKILL_MODIFIER_COL, skill.getSkillModifier());
-            values.put(SKILL_MODIFIER_VALUE_COL, skill.getSkillModifierValue());
+        values.put(SKILL_NAME_COL, skill.getSkillName());
+        values.put(SKILL_DESCRIPTION_COL, skill.getSkillDescription());
+        values.put(SKILL_CATEGORY_COL, skill.getSkillCategory());
+        values.put(SKILL_PROFICIENCY_COL, skill.getSkillProficiency());
+        values.put(SKILL_PROFICIENCY_PER_LEVEL_COL, skill.getSkillProficiencyPerLevel());
+        values.put(SKILL_SECONDARY_PROFICIENCY_COL, skill.getSkillSecondaryProficiency());
+        values.put(SKILL_SECONDARY_PROFICIENCY_PER_LEVEL_COL, skill.getSkillSecondaryProficiencyPerLevel());
+        values.put(SKILL_PREREQUISITES_COL, skill.getSkillPrerequisites());
+        values.put(SKILL_MODIFIER_COL, skill.getSkillModifier());
+        values.put(SKILL_MODIFIER_VALUE_COL, skill.getSkillModifierValue());
 
-            db.insert(SKILL_TABLE_NAME, null, values);
-        }
+        db.insert(SKILL_TABLE_NAME, null, values);
     }
+}
 ```
 
 Lastly, data is accessed from the database using one of two different queries from the application. The first query returns all values contained in the specific table as in the below example for the Skills Table
 ```java
     public ArrayList<Skill> getDBSkillsList() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<Skill> skillsList = new ArrayList<>();
+    SQLiteDatabase db = this.getWritableDatabase();
+    ArrayList<Skill> skillsList = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + SKILL_TABLE_NAME, null);
-        int rowCount = cursor.getCount();
-        if (cursor.moveToFirst()) {
-            do {
-                skillsList.add(
-                        new Skill(
-                                cursor.getInt(0),       // Skill ID
-                                cursor.getString(1),    // Skill Name
-                                cursor.getString(2),    // Skill Description
-                                cursor.getString(3),    // Skill Category
-                                cursor.getInt(4),       // Skill Base Proficiency
-                                cursor.getInt(5),       // Skill Proficiency Per Level
-                                cursor.getInt(6),       // Skill Secondary Base Proficiency
-                                cursor.getInt(7),       // Skill Secondary Proficiency Per Level
-                                cursor.getString(8),    // Skill Prerequisites (comma delim)
-                                cursor.getString(9),    // Skill Modifier
-                                cursor.getInt(10)       // Skill Modifier value
-                        )
-                );
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return skillsList;
+    Cursor cursor = db.rawQuery("SELECT * FROM " + SKILL_TABLE_NAME, null);
+    int rowCount = cursor.getCount();
+    if (cursor.moveToFirst()) {
+        do {
+            skillsList.add(
+                    new Skill(
+                            cursor.getInt(0),       // Skill ID
+                            cursor.getString(1),    // Skill Name
+                            cursor.getString(2),    // Skill Description
+                            cursor.getString(3),    // Skill Category
+                            cursor.getInt(4),       // Skill Base Proficiency
+                            cursor.getInt(5),       // Skill Proficiency Per Level
+                            cursor.getInt(6),       // Skill Secondary Base Proficiency
+                            cursor.getInt(7),       // Skill Secondary Proficiency Per Level
+                            cursor.getString(8),    // Skill Prerequisites (comma delim)
+                            cursor.getString(9),    // Skill Modifier
+                            cursor.getInt(10)       // Skill Modifier value
+                    )
+            );
+        } while (cursor.moveToNext());
     }
+    cursor.close();
+    return skillsList;
+}
 ```
 
 And the second query method is to return one or more entries contained in a comma delimmitted string passed as an argument to the method. This uses the SQL query "IN" method to dynamically select any matching entries for the skillname, but also able to return a single value. 
 
 ```java
     public ArrayList<Skill> getPartialDBSkillsList(String skillNames) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ArrayList<Skill> skillsList = new ArrayList<>();
+    SQLiteDatabase db = this.getWritableDatabase();
+    ArrayList<Skill> skillsList = new ArrayList<>();
 
-        // Reformat the skillNames string to support the IN function of SQL
-        String skillNamesFormatted = skillNames.replace(",","','");
-        String getSkillsQuery = "SELECT * FROM " + SKILL_TABLE_NAME + " WHERE " + SKILL_NAME_COL + " IN ('" + skillNamesFormatted + "')";
-        Cursor cursor = db.rawQuery(getSkillsQuery, null);
-        if (cursor.moveToFirst()) {
-            do  {
-                skillsList.add(
-                        new Skill(
-                                cursor.getInt(0),       // Skill ID
-                                cursor.getString(1),    // Skill Name
-                                cursor.getString(2),    // Skill Description
-                                cursor.getString(3),    // Skill Category
-                                cursor.getInt(4),       // Skill Base Proficiency
-                                cursor.getInt(5),       // Skill Proficiency Per Level
-                                cursor.getInt(6),       // Skill Secondary Base Proficiency
-                                cursor.getInt(7),       // Skill Secondary Proficiency Per Level
-                                cursor.getString(8),    // Skill Prerequisites (comma delim)
-                                cursor.getString(9),    // Skill Modifier
-                                cursor.getInt(10)       // Skill Modifier value
-                        )
-                );
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return skillsList;
+    // Reformat the skillNames string to support the IN function of SQL
+    String skillNamesFormatted = skillNames.replace(",","','");
+    String getSkillsQuery = "SELECT * FROM " + SKILL_TABLE_NAME + " WHERE " + SKILL_NAME_COL + " IN ('" + skillNamesFormatted + "')";
+    Cursor cursor = db.rawQuery(getSkillsQuery, null);
+    if (cursor.moveToFirst()) {
+        do  {
+            skillsList.add(
+                    new Skill(
+                            cursor.getInt(0),       // Skill ID
+                            cursor.getString(1),    // Skill Name
+                            cursor.getString(2),    // Skill Description
+                            cursor.getString(3),    // Skill Category
+                            cursor.getInt(4),       // Skill Base Proficiency
+                            cursor.getInt(5),       // Skill Proficiency Per Level
+                            cursor.getInt(6),       // Skill Secondary Base Proficiency
+                            cursor.getInt(7),       // Skill Secondary Proficiency Per Level
+                            cursor.getString(8),    // Skill Prerequisites (comma delim)
+                            cursor.getString(9),    // Skill Modifier
+                            cursor.getInt(10)       // Skill Modifier value
+                    )
+            );
+        } while (cursor.moveToNext());
     }
+    cursor.close();
+    return skillsList;
+}
 ```
 
 The above method does not support partial matches, but could easily be modified to support partial match searching of the database. In future versions of this application, such functinonality will be implemented for general search parameters. 
